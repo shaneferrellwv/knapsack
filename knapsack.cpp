@@ -48,8 +48,8 @@ class knapsack
         delete[] dp;
     }
 
-    // solves knapsack problem using bottom-up dynamic programming
-    // dp has max value of first i items of size exactly k whose total weight is exactly w
+    // solves knapsack problem using bottom-up dynamic programming for recurrence relation
+    // dp[i][w][k] has max value of first i items of size exactly k whose total weight is exactly w
     int solve()
     {
         for (int i = 0; i <= N; i++)
@@ -75,9 +75,9 @@ class knapsack
     void traceback()
     {
         int bagValue = dp[N][C][K];
-        int c = C; // current bag weight
-        int k = K; // items removed
-        int n = N - 1; // current bag size
+        int c = C;      // current bag weight
+        int k = K;      // items removed
+        int n = N - 1;  // current bag size
 
         while (bagValue > 0)
         {
@@ -146,7 +146,7 @@ public:
             }
         }
         else
-            cout << "There is no subset of exactly " << K << " items totaling exactly weight " << C << endl;
+            cout << "There is no subset of exactly " << K << " items exactly totaling weight " << C << endl;
     }
 };
 
