@@ -31,6 +31,8 @@ To compile and run this program, you need a C++ compiler. Use the following comm
 #### Input File Format
 The input file should be in the `input/` directory and formatted as whitespace-separated values: `name weight value`.
 
+The sum of the values of items in the input file should not be greater than 99999998. The program may produce unexpected behavior if provided an input file that does not meet this specification.
+
 #### Dependencies
 - Standard C++ libraries: `<iostream>`, `<vector>`, `<algorithm>`, `<limits>`, `<fstream>`, `<sstream>`
 
