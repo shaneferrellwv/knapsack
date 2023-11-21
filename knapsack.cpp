@@ -18,6 +18,7 @@ class knapsack
 
     // intermediate member variables
     int maxValue;
+    vector<item> sack;
 
     // utility function to allocate 3D dp array
     void allocate3DArray()
@@ -71,6 +72,46 @@ class knapsack
         return dp[N][C][K];
     }
 
+    void traceback()
+    {
+        int bagValue = dp[N][C][K];
+        int c = C; // current bag weight
+        int k = K; // items removed
+        int n = N - 1; // current bag size
+
+        while (bagValue > 0)
+        {
+            for (int i = 0; i < items.size(); i++)
+            {
+                // weight of item chosen by bottom-up dynamic programming solution
+                if (c - items[n - i].w >= 0)
+                {
+                    int chosenItemValue = bagValue - dp[N][c - items[n - i].w][k - 1];
+
+                    // if item was chosen
+                    if (chosenItemValue == items[n - i].v)
+                    {
+                        // add item to list of items in solution
+                        sack.push_back(items[n - i]);
+
+                        // update bag value and bag weight
+                        bagValue -= items[n - i].v;
+                        c -= items[n - i].w;
+
+                        // remove item from items list
+                        items.erase(items.begin() + n - i);
+
+                        k--;
+                        n--;
+                        break;
+                    }
+                }
+            }
+        }
+
+        bagValue;
+    }
+
 public:
     // knapsack constructor
     knapsack(string fileName, int capacity, int numberOfItems)
@@ -82,6 +123,7 @@ public:
 
         allocate3DArray();
         maxValue = solve();
+        traceback();
     }
 
     // knapsack destructor
@@ -94,9 +136,14 @@ public:
     {
         if (maxValue >= 0)
         {
-            cout << "Max value in knapsack: " << maxValue << endl << endl;
+            cout << "Max value in knapsack: " << maxValue << endl;
             cout << "Knapsack contains: ";
-            
+            for (auto it = sack.begin(); it != sack.end(); ++it)
+            {
+                cout << it->name;
+                if (next(it) != sack.end())
+                    cout << ", ";
+            }
         }
         else
             cout << "There is no subset of exactly " << K << " items totaling exactly weight " << C << endl;
