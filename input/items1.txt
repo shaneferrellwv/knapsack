@@ -1,0 +1,6 @@
+laptop 3 20
+textbook 8 4
+pencil 1 2
+notebook 4 6
+calculator 2 10
+lunchbox 10 15
