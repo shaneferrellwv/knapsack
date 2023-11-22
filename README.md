@@ -1,7 +1,5 @@
 # knapsack
 
----
-
 ## Project Description
 This C++ program implements a solution to the Knapsack problem using dynamic programming. The Knapsack problem is a classic problem in combinatorial optimization. The program is designed to solve the problem of selecting a number of items with given weights and values to maximize the total value in a knapsack of a given capacity.
 
